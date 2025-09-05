@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package GITCommitMessage;
+
+service GITCommitMessage{
+ rpc GetCommitMessage(Message) returns (MessageResponse) {}
+
+}
+
+message Message{
+ string message = 1;
+}
+
+message MessageResponse{
+ string message = 1;
+ bool received = 2;
+}

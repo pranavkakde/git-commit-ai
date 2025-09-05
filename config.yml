@@ -1,0 +1,8 @@
+model_config:
+  # Enter one of the following; "gemini", "claude", "openai"
+  - model_provider: "gemini"
+  - model_name: "gemini-2.0-flash"
+git_config:
+  - local_git_path: "C:\\repos\\temprepo\\UI-Testing"
+grpc_config:
+  - grpc_server_port: 50051

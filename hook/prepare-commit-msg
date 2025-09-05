@@ -1,0 +1,15 @@
+#!/bin/bash
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+
+# Skip for merge commits or amended commits
+if [[ "$COMMIT_SOURCE" == "merge" || "$COMMIT_SOURCE" == "commit" ]]; then
+  exit 0
+fi
+
+# Get commit message from gRPC server
+GENERATED_MSG=$(py ./.git/hooks/python_files/client.py)
+echo "Generated message $GENERATED_MSG"
+# Overwrite the commit message file
+echo "$GENERATED_MSG" > "$COMMIT_MSG_FILE"
