@@ -8,8 +8,16 @@ if [[ "$COMMIT_SOURCE" == "merge" || "$COMMIT_SOURCE" == "commit" ]]; then
   exit 0
 fi
 
-# Get commit message from gRPC server
-GENERATED_MSG=$(py ./.git/hooks/python_files/client.py)
-echo "Generated message $GENERATED_MSG"
+# Call gRPC server using reflection
+GENERATED_MSG=$(grpcurl -plaintext \
+  -d "{\"message\": \"Commit message\"}" \
+  localhost:50051 \
+  GITCommitMessage.GITCommitMessage/GetCommitMessage)
+
+echo "Generated message: $GENERATED_MSG"
+
+# Extract "message" field without jq
+FINAL_MSG=$(echo "$GENERATED_MSG" | sed -n 's/.*"message": "\(.*\)",.*/\1/p')
+
 # Overwrite the commit message file
-echo "$GENERATED_MSG" > "$COMMIT_MSG_FILE"
+echo "$FINAL_MSG" > "$COMMIT_MSG_FILE"

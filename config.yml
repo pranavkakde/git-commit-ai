@@ -3,6 +3,6 @@ model_config:
   - model_provider: "gemini"
   - model_name: "gemini-2.0-flash"
 git_config:
-  - local_git_path: "C:\\repos\\temprepo\\UI-Testing"
+  - local_git_path: "C:\\Users\\Pranav\\Documents\\Code\\GenAI\\git-commit-ai"
 grpc_config:
   - grpc_server_port: 50051

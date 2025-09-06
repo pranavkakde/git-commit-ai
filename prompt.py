@@ -1,5 +1,7 @@
 def get_prompt(staged_changes: str):
-    
+    """
+    Function to get the prompt for the LLM model.
+    """
     prompt = f"""
     Write brief description of the changes that were done in following files. I need to put these comments in GIT while committing my code. 
     Name of the file is mentioned in the line that contains "--- Diff for ---". Removed text from file is denoted with a minus(-) sign and added text is denoted with a plus (+) sign.

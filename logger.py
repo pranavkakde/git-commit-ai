@@ -1,7 +1,7 @@
 import logging
 
 # Create a custom logger
-file_logger = logging.getLogger('rag_logger')
+file_logger = logging.getLogger(__name__)
 file_logger.setLevel(logging.DEBUG)  # Set the logger's overall level
 
 # Create a file handler

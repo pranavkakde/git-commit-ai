@@ -8,12 +8,16 @@ def get_staged_diff():
     return result.stdout.decode('utf-8')
 
 def main():
-    diff = get_staged_diff()
-    channel = grpc.insecure_channel('localhost:50051')
-    stub = pb2_grpc.GITCommitMessageStub(channel)
-    request = pb2.Message(message=diff)
-    response = stub.GetCommitMessage(request)
-    print(response.message)
+    try:
+        diff = get_staged_diff()
+        channel = grpc.insecure_channel('localhost:50051')
+        stub = pb2_grpc.GITCommitMessageStub(channel)
+        request = pb2.Message(message=diff)
+        response = stub.GetCommitMessage(request)
+        print(response.message)
+    except Exception as e:
+        print(f"Error getting response: {e}")
+        raise e
 
 if __name__ == "__main__":
     main()

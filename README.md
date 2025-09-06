@@ -20,6 +20,7 @@
 ### Requirements
 - Python >= 3.13
 - Git installed and available on PATH
+- Install [grpcurl](https://github.com/fullstorydev/grpcurl)
 
 ### Install dependencies
 From the project root:
@@ -94,14 +95,14 @@ With the server running, you can call it using the provided client:
 
 ```bash
 python grpc_client/client.py
-``;
+```
 
 The client sends your staged diff (`git diff --cached`) to the server and prints the returned message.
 
 ---
 
 ## Git Hook Integration (prepare-commit-msg)
-You can wire the hook to call the gRPC server and auto‑populate your commit message.
+You can wire the hook to call the gRPC server and auto‑populate your commit message. `prepare-commit-msg` utilizes `grpcurl` to call server to get commit message. If you want to use python script `grpc_client\client.py` update `prepare-commit-msg` script. 
 
 1) Ensure the gRPC server is running:
 ```bash
